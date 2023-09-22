@@ -1,0 +1,66 @@
+package ch.cern.todo.services;
+
+import ch.cern.todo.exceptions.ResourceNotFoundException;
+import ch.cern.todo.models.Task;
+import ch.cern.todo.models.TaskCategory;
+import ch.cern.todo.repositories.TaskRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class TaskService {
+    private final TaskRepository taskRepository;
+
+    public TaskService(TaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
+    }
+
+    public List<Task> getTasks() {
+        List<Task> allTasks = new ArrayList<>();
+
+        taskRepository.findAll().forEach(allTasks::add);
+
+        return allTasks;
+    }
+
+    public Task getTask(Long id) {
+        Optional<Task> result = taskRepository.findById(id);
+
+        if (result == null) {
+            throw new ResourceNotFoundException("Task with id=" + id + "does not exist.");
+        }
+
+        return result;
+    }
+
+    public void addTask(Task task) {
+        TaskCategory taskCategory = task.getTaskCategory();
+        taskCategory.setCategoryName(taskCategory.getCategoryName());
+        taskCategory.setCategoryDescription(taskCategory.getCategoryDescription());
+
+        taskRepository.save(task);
+    }
+
+    public Task updateTask(Long id, Task task) {
+        Task existingTask = taskRepository.findById(id).orElse(null);
+        if (existingTask != null) {
+            existingTask.setTaskName(task.getTaskName());
+            existingTask.setTaskDescription(task.getTaskDescription());
+            existingTask.setTaskDeadline(task.getTaskDeadline());
+            existingTask.setTaskCategory(task.getTaskCategory()); // Updated for category
+            return taskRepository.save(existingTask);
+        }
+        return null;
+    }
+
+    public void deleteTask(Long id) {
+        taskRepository.delete(getTask(id));
+    }
+//
+//    public List<Task> getTasksByCategory(Long categoryId) {
+//        return taskRepository.findByCategoryId(categoryId);
+//    }
+}
