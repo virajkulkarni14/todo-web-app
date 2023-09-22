@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "8875f46c-d6f2-4af9-9e12-21d789a3cd82",
+		"name": "SpringBootTasksApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "4593803"
+	},
+	"item": [
+		{
+			"name": "GET Tasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:8080/api/tasks"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Task Categories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:8080/api/taskCategories"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Task [id]",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:8080/api/tasks/1"
+			},
+			"response": []
+		},
+		{
+			"name": "POST Task",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"taskName\": \"Get Groceries\",\r\n    \"taskDescription\": \"Get all groceries from the list\",\r\n    \"taskDeadline\": \"2023-11-21\",\r\n    \"taskCategory\": {\r\n        \"categoryName\": \"Primary\",\r\n        \"categoryDescription\": \"Primary Activities\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/api/tasks"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Task Category [id]",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:8080/api/tasks/1"
+			},
+			"response": []
+		},
+		{
+			"name": "POST Task Category",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"categoryName\": \"Primary\",\r\n    \"categoryDescription\": \"Primary Activities\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/api/taskCategories"
+			},
+			"response": []
+		}
+	]
+}
