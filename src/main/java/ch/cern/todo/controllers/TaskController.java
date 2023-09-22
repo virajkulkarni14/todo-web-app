@@ -5,7 +5,6 @@ import ch.cern.todo.services.TaskService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -23,7 +22,7 @@ public class TaskController {
     }
 
     @GetMapping("/tasks/{id}")
-    public Optional<Task> getTask(@PathVariable Long id) {
+    public Task getTask(@PathVariable Long id) {
         return taskService.getTask(id);
     }
 
@@ -41,9 +40,4 @@ public class TaskController {
     public void deleteTask(@PathVariable Long id) {
         taskService.deleteTask(id);
     }
-
-//    @GetMapping("/tasks/taskCategories/{category_id}")
-//    public List<Task> getTasksForCategory(@PathVariable Long category_id) {
-//        return taskService.getTasksByCategory(category_id);
-//    }
 }

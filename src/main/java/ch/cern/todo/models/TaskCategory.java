@@ -17,21 +17,15 @@ public class TaskCategory {
     @Column(name = "CATEGORY_DESCRIPTION")
     private String categoryDescription;
 
-    @OneToMany(mappedBy = "taskCategory", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "taskCategory")
     private List<Task> tasks;
 
-    public TaskCategory() {
-
-    }
+    public TaskCategory() {}
 
     public TaskCategory(long id, String categoryName, String categoryDescription) {
         this.id = id;
         this.categoryName = categoryName;
         this.categoryDescription = categoryDescription;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public String getCategoryName() {

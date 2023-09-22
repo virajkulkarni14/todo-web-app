@@ -31,7 +31,7 @@ public class TaskCategoryService {
             throw new ResourceNotFoundException("Task Category with id=" + id + "does not exist.");
         }
 
-        return result;
+        return result.get();
     }
 
     public void addTaskCategory(TaskCategory taskCategory) {

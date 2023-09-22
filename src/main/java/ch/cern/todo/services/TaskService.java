@@ -33,7 +33,7 @@ public class TaskService {
             throw new ResourceNotFoundException("Task with id=" + id + "does not exist.");
         }
 
-        return result;
+        return result.get();
     }
 
     public void addTask(Task task) {
@@ -57,10 +57,7 @@ public class TaskService {
     }
 
     public void deleteTask(Long id) {
-        taskRepository.delete(getTask(id));
+        Task existingTask = getTask(id);
+        taskRepository.delete(existingTask);
     }
-//
-//    public List<Task> getTasksByCategory(Long categoryId) {
-//        return taskRepository.findByCategoryId(categoryId);
-//    }
 }

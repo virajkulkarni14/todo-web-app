@@ -23,27 +23,17 @@ public class Task {
     @Column(name = "TASK_DEADLINE")
     private LocalDate taskDeadline;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "categoryId")
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "CATEGORY_ID")
     private TaskCategory taskCategory;
 
-    public Task() {
+    public Task() {}
 
-    }
-
-    public Task(String taskName, String taskDescription, LocalDate taskDeadline) {
+    public Task(String taskName, String taskDescription, LocalDate taskDeadline, TaskCategory taskCategory) {
         this.taskName = taskName;
         this.taskDescription = taskDescription;
         this.taskDeadline = taskDeadline;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.taskCategory = taskCategory;
     }
 
     public String getTaskName() {
