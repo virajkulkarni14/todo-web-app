@@ -23,8 +23,8 @@ public class Task {
     @Column(name = "TASK_DEADLINE")
     private LocalDate taskDeadline;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "CATEGORY_ID")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "id")
     private TaskCategory taskCategory;
 
     public Task() {}

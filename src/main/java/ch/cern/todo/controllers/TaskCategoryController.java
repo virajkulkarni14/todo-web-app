@@ -2,6 +2,7 @@ package ch.cern.todo.controllers;
 
 import ch.cern.todo.models.TaskCategory;
 import ch.cern.todo.services.TaskCategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class TaskCategoryController {
 
+    @Autowired
     private final TaskCategoryService taskCategoryService;
 
     public TaskCategoryController(TaskCategoryService taskCategoryService) {

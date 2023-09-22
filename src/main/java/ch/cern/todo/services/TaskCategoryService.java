@@ -3,6 +3,8 @@ package ch.cern.todo.services;
 import ch.cern.todo.exceptions.ResourceNotFoundException;
 import ch.cern.todo.models.TaskCategory;
 import ch.cern.todo.repositories.TaskCategoryRepository;
+import ch.cern.todo.repositories.TaskRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,6 +14,9 @@ import java.util.Optional;
 @Service
 public class TaskCategoryService {
 
+    @Autowired
+    private TaskRepository taskRepository;
+    @Autowired
     private final TaskCategoryRepository taskCategoryRepository;
 
     public TaskCategoryService(TaskCategoryRepository taskCategoryRepository) {
