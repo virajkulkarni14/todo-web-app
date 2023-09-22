@@ -1,6 +1,6 @@
 package ch.cern.todo.services;
 
-import ch.cern.todo.exceptions.TaskCategoryNotFoundException;
+import ch.cern.todo.exceptions.ResourceNotFoundException;
 import ch.cern.todo.models.TaskCategory;
 import ch.cern.todo.repositories.TaskCategoryRepository;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,11 @@ public class TaskCategoryService {
     public TaskCategory getTaskCategory(long id) {
         Optional<TaskCategory> result = taskCategoryRepository.findById(id);
 
-        return result.orElseThrow(TaskCategoryNotFoundException::new);
+        if (result == null) {
+            throw new ResourceNotFoundException("Task Category with id=" + id + "does not exist.");
+        }
+
+        return result;
     }
 
     public void addTaskCategory(TaskCategory taskCategory) {
